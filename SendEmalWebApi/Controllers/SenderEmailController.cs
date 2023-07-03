@@ -21,7 +21,8 @@ namespace SendEmalWebApi.Controllers
         {
 
             // получить все запси 
-            var result = await _context.RequestModels.ToListAsync();
+            var result = await _context.RequestModels.Include(x => x.Recipient).ToListAsync();
+
             return result;
         }
         [HttpPost]
@@ -30,6 +31,7 @@ namespace SendEmalWebApi.Controllers
         {
 
             // Сформеровать email  model.Subject model.Body
+
             // разослать по  model.Recipients
             // 
 
