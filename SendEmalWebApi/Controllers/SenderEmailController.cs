@@ -31,8 +31,12 @@ namespace SendEmalWebApi.Controllers
         {
             var entity = new EntityDB();
             // Сформеровать email  model.Subject model.Body
+
+
             try
             {
+                // разослать по  model.Recipients
+
                 entity.Result = "OK";
             }
             catch (Exception e)
@@ -41,11 +45,8 @@ namespace SendEmalWebApi.Controllers
                 entity.FieledMessage = e.Message;
             }
 
-            // разослать по  model.Recipients
-            // 
-
             // записать в бд 
-            
+
             entity.CreatedDate = DateTime.Now.Date;
             entity.Subject = model.Subject;
             entity.Body = model.Body;
