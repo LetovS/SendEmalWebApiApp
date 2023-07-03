@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SendEmalWebApi.Data;
 
@@ -11,9 +12,11 @@ using SendEmalWebApi.Data;
 namespace SendEmalWebApi.Migrations
 {
     [DbContext(typeof(SenderContext))]
-    partial class SenderContextModelSnapshot : ModelSnapshot
+    [Migration("20230703172330_add_new_fields")]
+    partial class add_new_fields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

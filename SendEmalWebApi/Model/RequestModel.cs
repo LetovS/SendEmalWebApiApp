@@ -11,5 +11,9 @@ namespace SendEmalWebApi.Model
         public string Body { get; set; }
         [NotMapped]
         public virtual string []? Recipients { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now.Date;
+        public Result Result { get; set; } = Result.Failed;
+        [Required]
+        public string FieledMessage { get; set; }
     }
 }
