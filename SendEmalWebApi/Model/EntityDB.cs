@@ -13,8 +13,8 @@ namespace SendEmalWebApi.Model
         //[ForeignKey(nameof(Recipient))]
         //public int RecipientId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now.Date;
-        public Result Result { get; set; } = Result.Failed;
+        public string Result { get; set; } = "OK";
         [Required]
-        public string FieledMessage { get; set; }
+        public string FieledMessage { get; set; } = string.Empty;
     }
 }

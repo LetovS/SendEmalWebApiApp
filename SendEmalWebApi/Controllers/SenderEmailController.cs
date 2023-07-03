@@ -27,17 +27,36 @@ namespace SendEmalWebApi.Controllers
         }
         [HttpPost]
         [Route("/api/mails")]
-        public async Task<ActionResult<RequestModel>> NewWork(RequestModel model)
+        public async Task<ActionResult> NewWork(RequestModel model)
         {
-
+            var entity = new EntityDB();
             // Сформеровать email  model.Subject model.Body
+            try
+            {
+                entity.Result = "OK";
+            }
+            catch (Exception e)
+            {
+                entity.FieledMessage = e.Message;
+            }
 
             // разослать по  model.Recipients
             // 
 
             // записать в бд 
             
-            return default;
+            entity.CreatedDate = DateTime.Now.Date;
+            entity.Subject = model.Subject;
+            entity.Body = model.Body;
+            List<Email> emails = new List<Email>();
+            foreach (var email in model.Recipient)
+            {
+                emails.Add(new Email { EmailAddress = email });
+            }
+            entity.Recipient = emails;
+            _context.RequestModels.Add(entity);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }

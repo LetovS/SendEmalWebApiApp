@@ -20,7 +20,6 @@ namespace SendEmalWebApi.Data
                     Id = 1,
                     Subject = "My first email",
                     Body = "Hello my friends",
-                    Result = Result.OK,
                     FieledMessage = string.Empty
                 }
                 );
