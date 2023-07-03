@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SendEmalWebApi.Data;
+using SendEmalWebApi.Model;
 
 namespace SendEmalWebApi.Controllers
 {
@@ -15,14 +17,33 @@ namespace SendEmalWebApi.Controllers
         }
         [HttpGet]
         [Route("/api/mails")]
-        public async Task<ActionResult> GetProducts()
+        public async Task<ActionResult<List<EntityDB>>> GetProducts()
         {
-            return default;
+
+            // получить все запси 
+            var result = await _context.RequestModels
+                //.Include(x=> x.Recipient)
+                //.Select(x => new
+                //{
+                //    Id = x.Id,
+                //    Date = x.CreatedDate,
+                //    Result = x.Result,
+                //    Body = x.Body,
+                //    Subject = x.Subject,
+                //    Addres = x.Recipient.EmailAddress
+                //})
+                .ToListAsync();
+            return result;
         }
         [HttpPost]
         [Route("/api/mails")]
-        public async Task<ActionResult> GetProduct(int id)
+        public async Task<ActionResult<RequestModel>> NewWork(RequestModel model)
         {
+
+            // Сформеровать email  model.Subject model.Body разослать по  model.Recipients
+
+            // записать в бд 
+            
             return default;
         }
     }
