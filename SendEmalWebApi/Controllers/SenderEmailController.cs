@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SendEmalWebApi.Data;
 
 namespace SendEmalWebApi.Controllers
 {
@@ -7,6 +8,11 @@ namespace SendEmalWebApi.Controllers
     [ApiController]
     public class SenderEmailController : ControllerBase
     {
+        private readonly SenderContext _context;
+        public SenderEmailController(SenderContext context)
+        {
+            _context = context;
+        }
         [HttpGet]
         [Route("/api/mails")]
         public async Task<ActionResult> GetProducts()
