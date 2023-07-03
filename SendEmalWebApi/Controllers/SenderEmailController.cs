@@ -21,18 +21,7 @@ namespace SendEmalWebApi.Controllers
         {
 
             // получить все запси 
-            var result = await _context.RequestModels
-                //.Include(x=> x.Recipient)
-                //.Select(x => new
-                //{
-                //    Id = x.Id,
-                //    Date = x.CreatedDate,
-                //    Result = x.Result,
-                //    Body = x.Body,
-                //    Subject = x.Subject,
-                //    Addres = x.Recipient.EmailAddress
-                //})
-                .ToListAsync();
+            var result = await _context.RequestModels.ToListAsync();
             return result;
         }
         [HttpPost]
@@ -40,7 +29,9 @@ namespace SendEmalWebApi.Controllers
         public async Task<ActionResult<RequestModel>> NewWork(RequestModel model)
         {
 
-            // Сформеровать email  model.Subject model.Body разослать по  model.Recipients
+            // Сформеровать email  model.Subject model.Body
+            // разослать по  model.Recipients
+            // 
 
             // записать в бд 
             
