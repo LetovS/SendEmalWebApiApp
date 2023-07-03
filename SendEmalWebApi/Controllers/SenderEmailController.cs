@@ -7,6 +7,17 @@ namespace SendEmalWebApi.Controllers
     [ApiController]
     public class SenderEmailController : ControllerBase
     {
-
+        [HttpGet]
+        [Route("/api/mails")]
+        public async Task<ActionResult> GetProducts()
+        {
+            return default;
+        }
+        [HttpPost]
+        [Route("/api/mails")]
+        public async Task<ActionResult> GetProduct(int id)
+        {
+            return default;
+        }
     }
 }
