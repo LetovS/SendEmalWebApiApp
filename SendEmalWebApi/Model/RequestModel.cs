@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SendEmalWebApi.Model
 {
@@ -8,7 +9,7 @@ namespace SendEmalWebApi.Model
         public string Subject { get; set; }
         [Required]
         public string Body { get; set; }
-        [Required]
-        public string [] Recipients { get; set; }
+        [NotMapped]
+        public virtual string []? Recipients { get; set; }
     }
 }
