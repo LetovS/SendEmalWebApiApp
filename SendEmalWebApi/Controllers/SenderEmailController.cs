@@ -37,6 +37,7 @@ namespace SendEmalWebApi.Controllers
             }
             catch (Exception e)
             {
+                entity.Result = "Failed";
                 entity.FieledMessage = e.Message;
             }
 
