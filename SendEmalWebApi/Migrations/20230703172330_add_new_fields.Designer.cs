@@ -25,7 +25,7 @@ namespace SendEmalWebApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SendEmalWebApi.Model.RequestModel", b =>
+            modelBuilder.Entity("SendEmalWebApi.Model.EntityDB", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

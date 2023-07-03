@@ -22,7 +22,7 @@ namespace SendEmalWebApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SendEmalWebApi.Model.RequestModel", b =>
+            modelBuilder.Entity("SendEmalWebApi.Model.EntityDB", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -50,7 +50,7 @@ namespace SendEmalWebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RequestModels");
+                    b.ToTable("RequestModels", (string)null);
                 });
 #pragma warning restore 612, 618
         }
