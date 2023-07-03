@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SendEmalWebApi.Data;
 
@@ -11,9 +12,11 @@ using SendEmalWebApi.Data;
 namespace SendEmalWebApi.Migrations
 {
     [DbContext(typeof(SenderContext))]
-    partial class SenderContextModelSnapshot : ModelSnapshot
+    [Migration("20230703204458_init2")]
+    partial class init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,6 +80,9 @@ namespace SendEmalWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RecipientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Result")
                         .HasColumnType("int");
 
@@ -95,6 +101,7 @@ namespace SendEmalWebApi.Migrations
                             Body = "Hello my friends",
                             CreatedDate = new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Local),
                             FieledMessage = "",
+                            RecipientId = 0,
                             Result = 0,
                             Subject = "My first email"
                         });
@@ -103,17 +110,12 @@ namespace SendEmalWebApi.Migrations
             modelBuilder.Entity("SendEmalWebApi.Model.Email", b =>
                 {
                     b.HasOne("SendEmalWebApi.Model.EntityDB", "EntityDB")
-                        .WithMany("Recipient")
+                        .WithMany()
                         .HasForeignKey("EntityDBId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("EntityDB");
-                });
-
-            modelBuilder.Entity("SendEmalWebApi.Model.EntityDB", b =>
-                {
-                    b.Navigation("Recipient");
                 });
 #pragma warning restore 612, 618
         }

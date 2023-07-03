@@ -10,6 +10,6 @@ namespace SendEmalWebApi.Model
         [Required]
         public string Body { get; set; }
         [NotMapped]
-        public string [] Recipient { get; set; }
+        public List<string> Recipient { get; set; }
     }
 }

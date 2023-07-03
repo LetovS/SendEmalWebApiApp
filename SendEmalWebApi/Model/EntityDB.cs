@@ -9,10 +9,9 @@ namespace SendEmalWebApi.Model
         public string Subject { get; set; }
         [Required]
         public string Body { get; set; }
-        [NotMapped]
-        public Email Recipient { get; set; }
-        [ForeignKey(nameof(Recipient))]
-        public int RecipientId { get; set; }
+        public virtual ICollection<Email> Recipient { get; set; }
+        //[ForeignKey(nameof(Recipient))]
+        //public int RecipientId { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now.Date;
         public Result Result { get; set; } = Result.Failed;
         [Required]
