@@ -18,11 +18,18 @@ namespace SendEmalWebApi.Controllers
         [HttpGet]
         [Route("/api/mails")]
         public async Task<ActionResult<List<EntityDB>>> GetProducts()
-        {
-
-            // получить все запси 
-            var result = await _context.RequestModels.Include(x => x.Recipient).ToListAsync();
-
+        {            
+            var result = await _context.RequestModels
+                .Select(x => new EntityDB
+                {
+                    Id= x.Id,
+                    Subject = x.Subject,
+                    FieledMessage = x.FieledMessage,
+                    Recipient = x.Recipient,
+                    Body = x.Body,
+                    Result = x.Result
+                })
+                .ToListAsync();
             return result;
         }
         [HttpPost]
