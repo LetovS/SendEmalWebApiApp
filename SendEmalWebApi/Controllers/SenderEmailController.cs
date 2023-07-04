@@ -57,8 +57,7 @@ namespace SendEmalWebApi.Controllers
                 emails.Add(new Email { EmailAddress = email });
             }
             entity.Recipient = emails;
-            //_context.RequestModels.Add(entity);
-            //_context.SaveChanges();
+            _baseRepository.Create(entity);
             return Ok();
         }
     }
