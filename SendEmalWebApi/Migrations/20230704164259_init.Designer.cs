@@ -12,8 +12,8 @@ using SendEmalWebApi.Data;
 namespace SendEmalWebApi.Migrations
 {
     [DbContext(typeof(SenderContext))]
-    [Migration("20230703204959_fix")]
-    partial class fix
+    [Migration("20230704164259_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,7 @@ namespace SendEmalWebApi.Migrations
 
                     b.HasIndex("EntityDBId");
 
-                    b.ToTable("Email");
+                    b.ToTable("Emails");
 
                     b.HasData(
                         new
@@ -80,8 +80,9 @@ namespace SendEmalWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Result")
-                        .HasColumnType("int");
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Subject")
                         .IsRequired()
@@ -96,9 +97,9 @@ namespace SendEmalWebApi.Migrations
                         {
                             Id = 1,
                             Body = "Hello my friends",
-                            CreatedDate = new DateTime(2023, 7, 3, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2023, 7, 4, 0, 0, 0, 0, DateTimeKind.Local),
                             FieledMessage = "",
-                            Result = 0,
+                            Result = "OK",
                             Subject = "My first email"
                         });
                 });
