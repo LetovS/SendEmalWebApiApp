@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SendEmalWebApi.Data;
 using SendEmalWebApi.Model;
+using SendEmalWebApi.Repositories;
+using SendEmalWebApi.Services.EmailSenderService;
 
 namespace SendEmalWebApi.Controllers
 {
@@ -10,27 +12,19 @@ namespace SendEmalWebApi.Controllers
     [ApiController]
     public class SenderEmailController : ControllerBase
     {
-        private readonly SenderContext _context;
-        public SenderEmailController(SenderContext context)
+        private readonly IRepository<EntityDB> _baseRepository;
+        private readonly IEmailSenderService _senderService;
+
+        public SenderEmailController(IRepository<EntityDB> baseRepository, IEmailSenderService senderService)
         {
-            _context = context;
+            _baseRepository = baseRepository;
+            _senderService = senderService;
         }
         [HttpGet]
         [Route("/api/mails")]
         public async Task<ActionResult<List<EntityDB>>> GetProducts()
-        {            
-            var result = await _context.RequestModels
-                .Select(x => new EntityDB
-                {
-                    Id= x.Id,
-                    Subject = x.Subject,
-                    FieledMessage = x.FieledMessage,
-                    Recipient = x.Recipient,
-                    Body = x.Body,
-                    Result = x.Result
-                })
-                .ToListAsync();
-            return result;
+        { 
+            return await _baseRepository.GetAll();
         }
         [HttpPost]
         [Route("/api/mails")]
@@ -63,8 +57,8 @@ namespace SendEmalWebApi.Controllers
                 emails.Add(new Email { EmailAddress = email });
             }
             entity.Recipient = emails;
-            _context.RequestModels.Add(entity);
-            _context.SaveChanges();
+            //_context.RequestModels.Add(entity);
+            //_context.SaveChanges();
             return Ok();
         }
     }
