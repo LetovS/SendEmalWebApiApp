@@ -1,7 +1,9 @@
-﻿namespace SendEmalWebApi.Services.EmailSenderService
+﻿using MimeKit;
+
+namespace SendEmalWebApi.Services.EmailSenderService
 {
-    public interface IEmailSenderService
+    public interface IEmailSenderService 
     {
-        void SendEmail(string email);
+        void SendEmail(ICollection<string> mails, string body, string subject);
     }
 }
