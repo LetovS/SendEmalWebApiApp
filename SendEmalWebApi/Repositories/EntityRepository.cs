@@ -12,14 +12,15 @@ namespace SendEmalWebApi.Repositories
         {
             _context = context;
         }
-        public EntityDB Create(EntityDB model)
+        public void Create(EntityDB model)
         {
-            throw new NotImplementedException();
+            _context.RequestModels.Add(model);
+            _context.SaveChanges();
         }
 
         public async Task<List<EntityDB>> GetAll()
         {
-            return await _context.RequestModels.Include(x => x.Recipient)
+            var result = await _context.RequestModels
                 .Select(x => new EntityDB
                 {
                     Id = x.Id,
@@ -30,6 +31,7 @@ namespace SendEmalWebApi.Repositories
                     Result = x.Result
                 })
                 .ToListAsync();
+            return result;
         }
     }
 }
