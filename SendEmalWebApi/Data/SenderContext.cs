@@ -6,7 +6,7 @@ namespace SendEmalWebApi.Data
     public class SenderContext : DbContext
     {
         public DbSet<EntityDB> RequestModels { get; set; }
-        //public DbSet<Email> Emails { get; set; }
+        public DbSet<Email> Emails { get; set; }
         public SenderContext(DbContextOptions<SenderContext> opt) : base (opt)
         {
             
