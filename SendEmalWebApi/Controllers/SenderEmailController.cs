@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
 using SendEmalWebApi.Data;
 using SendEmalWebApi.Model;
 using SendEmalWebApi.Repositories;
@@ -37,7 +38,7 @@ namespace SendEmalWebApi.Controllers
             try
             {
                 // разослать по  model.Recipients
-
+                _senderService.SendEmail(model.Recipient, model.Body, model.Subject);
                 entity.Result = "OK";
             }
             catch (Exception e)
@@ -47,8 +48,6 @@ namespace SendEmalWebApi.Controllers
             }
 
             // записать в бд 
-
-            entity.CreatedDate = DateTime.Now.Date;
             entity.Subject = model.Subject;
             entity.Body = model.Body;
             List<Email> emails = new List<Email>();
