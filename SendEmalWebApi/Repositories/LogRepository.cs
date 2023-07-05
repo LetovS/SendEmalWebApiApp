@@ -4,20 +4,27 @@ using SendEmalWebApi.Model;
 
 namespace SendEmalWebApi.Repositories
 {
-    public class EntityRepository : IRepository<Log>
+    /// <summary>
+    /// 
+    /// </summary>
+    public class LogRepository : IRepository<Log>
     {
         private readonly SenderContext _context;
-
-        public EntityRepository(SenderContext context)
+        /// <summary>
+        /// Репозиторий логов.
+        /// </summary>
+        /// <param name="context">Контекст БД.</param>
+        public LogRepository(SenderContext context)
         {
             _context = context;
         }
+        /// <inheritdoc/>
         public async Task Add(Log model)
         {
             _context.Logs.Add(model);
             await _context.SaveChangesAsync();
         }
-
+        /// <inheritdoc/>
         public async Task<List<Log>> GetAll()
         {
             var result = await _context.Logs

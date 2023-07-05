@@ -19,7 +19,7 @@ builder.Services.AddDbContext<SenderContext>(conf =>
 });
 
 builder.Services.AddSingleton<IEmailSenderService, EmailSenderService>();
-builder.Services.AddScoped<IRepository<Log>, EntityRepository>();
+builder.Services.AddScoped<IRepository<Log>, LogRepository>();
 
 var app = builder.Build();
 
