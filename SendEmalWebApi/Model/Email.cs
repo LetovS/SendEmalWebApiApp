@@ -3,12 +3,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SendEmalWebApi.Model
 {
+    /// <summary>
+    /// Почтовый адрес 
+    /// </summary>
     public class Email : Entity
     {
-        [Required]
+        /// <summary>
+        /// Почтовый адрес
+        /// </summary>
+        [Required]        
         public string? EmailAddress { get; set; }
-        public Log? EntityDB { get; set; }
-        [ForeignKey(nameof(EntityDBId))]
-        public int EntityDBId { get; set; }
+        /// <summary>
+        /// Лог.
+        /// </summary>
+        public Log? Log { get; set; }
+        /// <summary>
+        /// Внешний ключ.
+        /// </summary>
+        [ForeignKey(nameof(Log))]
+        public int LogId { get; set; }
     }
 }

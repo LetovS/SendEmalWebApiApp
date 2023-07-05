@@ -12,7 +12,7 @@ namespace SendEmalWebApi.Repositories
         {
             _context = context;
         }
-        public async Task Create(Log model)
+        public async Task Add(Log model)
         {
             _context.Logs.Add(model);
             await _context.SaveChangesAsync();
