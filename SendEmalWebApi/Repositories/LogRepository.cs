@@ -5,7 +5,7 @@ using SendEmalWebApi.Model;
 namespace SendEmalWebApi.Repositories
 {
     /// <summary>
-    /// 
+    /// Репозитарий логов.
     /// </summary>
     public class LogRepository : IRepository<Log>
     {
