@@ -3,10 +3,23 @@ using SendEmalWebApi.Model;
 
 namespace SendEmalWebApi.Data
 {
+    /// <summary>
+    /// Контекст базы данных.
+    /// </summary>
     public class SenderContext : DbContext
     {
+        /// <summary>
+        /// Логи.
+        /// </summary>
         public DbSet<Log> Logs { get; set; }
+        /// <summary>
+        /// Адреса электронной почты.
+        /// </summary>
         public DbSet<Email> Emails { get; set; }
+        /// <summary>
+        /// Инициализация контекста базы данных.
+        /// </summary>
+        /// <param name="opt">Опции контекста БД.</param>
         public SenderContext(DbContextOptions<SenderContext> opt) : base (opt)
         {
             
@@ -24,7 +37,7 @@ namespace SendEmalWebApi.Data
                 }
                 );
             modelBuilder.Entity<Email>()
-               .HasData(new Email { Id = 1, EmailAddress = "test1@mail.ru", EntityDBId = 1 }, new Email { Id = 2, EmailAddress = "test2@gmail.com", EntityDBId = 1 });
+               .HasData(new Email { Id = 1, EmailAddress = "test1@mail.ru", LogId = 1 }, new Email { Id = 2, EmailAddress = "test2@gmail.com", LogId = 1 });
         }
     }
 }
