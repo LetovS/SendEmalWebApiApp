@@ -27,7 +27,7 @@ namespace SendEmalWebApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RequestModels", x => x.Id);
+                    table.PrimaryKey("PK_Logs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,7 +43,7 @@ namespace SendEmalWebApi.Migrations
                 {
                     table.PrimaryKey("PK_Emails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Emails_RequestModels_EntityDBId",
+                        name: "FK_Emails_Logs_EntityDBId",
                         column: x => x.EntityDBId,
                         principalTable: "Logs",
                         principalColumn: "Id",
@@ -53,7 +53,7 @@ namespace SendEmalWebApi.Migrations
             migrationBuilder.InsertData(
                 table: "Logs",
                 columns: new[] { "Id", "Body", "CreatedDate", "FieledMessage", "Result", "Subject" },
-                values: new object[] { 1, "Hello my friends", new DateTime(2023, 7, 4, 0, 0, 0, 0, DateTimeKind.Local), "", "OK", "My first email" });
+                values: new object[] { 1, "Hello my friends", new DateTime(2023, 7, 5, 0, 0, 0, 0, DateTimeKind.Local), "", "OK", "My first email" });
 
             migrationBuilder.InsertData(
                 table: "Emails",

@@ -94,7 +94,7 @@ namespace SendEmalWebApi.Migrations
                         {
                             Id = 1,
                             Body = "Hello my friends",
-                            CreatedDate = new DateTime(2023, 7, 4, 0, 0, 0, 0, DateTimeKind.Local),
+                            CreatedDate = new DateTime(2023, 7, 5, 0, 0, 0, 0, DateTimeKind.Local),
                             FieledMessage = "",
                             Result = "OK",
                             Subject = "My first email"
@@ -103,13 +103,13 @@ namespace SendEmalWebApi.Migrations
 
             modelBuilder.Entity("SendEmalWebApi.Model.Email", b =>
                 {
-                    b.HasOne("SendEmalWebApi.Model.Log", "Log")
+                    b.HasOne("SendEmalWebApi.Model.Log", "EntityDB")
                         .WithMany("Recipient")
                         .HasForeignKey("EntityDBId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Log");
+                    b.Navigation("EntityDB");
                 });
 
             modelBuilder.Entity("SendEmalWebApi.Model.Log", b =>
