@@ -7,14 +7,20 @@ using Microsoft.Extensions.Hosting;
 
 namespace SendEmalWebApi.Services.EmailSenderService
 {
+    /// <summary>
+    /// Emails sender.
+    /// </summary>
     public class EmailSenderService : IEmailSenderService
     {
-        private readonly IConfiguration _configuration;
-        private readonly string _host;
-        private readonly string _port;
-        private readonly string _user;
+        private readonly IConfiguration _configuration;        
+        private readonly string _host;       
+        private readonly string _port;        
+        private readonly string _user;       
         private readonly string _pass;
-
+        /// <summary>
+        /// Инииализация Email sender
+        /// </summary>
+        /// <param name="configuration">Настройки.</param>
         public EmailSenderService(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -24,7 +30,9 @@ namespace SendEmalWebApi.Services.EmailSenderService
             _user = settings.GetRequiredSection("UserName").Value!;
             _pass = settings.GetRequiredSection("Password").Value!;
         }
-        public  void SendEmail(ICollection<string> mails, string body, string subject)
+
+        ///<inheritdoc/>
+        public void SendEmail(ICollection<string> mails, string body, string subject)
         {
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_user));
@@ -40,7 +48,5 @@ namespace SendEmalWebApi.Services.EmailSenderService
             smtp.Send(email);
             smtp.Disconnect(true);
         }
-
-       
     }
 }
