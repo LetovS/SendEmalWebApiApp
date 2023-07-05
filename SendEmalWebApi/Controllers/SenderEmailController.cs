@@ -29,16 +29,14 @@ namespace SendEmalWebApi.Controllers
         }
         [HttpPost]
         [Route("/api/mails")]
-        public async Task<ActionResult> NewWork(RequestModel model)
+        public async Task<ActionResult> NewWork(Request request)
         {
             var entity = new Log();
-            // Сформеровать email  model.Subject model.Body
-
-
+            // Сформеровать email  request.Subject request.Body
             try
             {
-                // разослать по  model.Recipients
-                _senderService.SendEmail(model.Recipient!, model.Body!, model.Subject!);
+                // разослать по  request.Recipients
+                _senderService.SendEmail(request.Recipient!, request.Body!, request.Subject!);
                 entity.Result = "OK";
             }
             catch (Exception e)
@@ -48,10 +46,10 @@ namespace SendEmalWebApi.Controllers
             }
 
             // записать в бд 
-            entity.Subject = model.Subject;
-            entity.Body = model.Body;
+            entity.Subject = request.Subject;
+            entity.Body = request.Body;
             List<Email> emails = new ();
-            foreach (var email in model.Recipient!)
+            foreach (var email in request.Recipient!)
             {
                 emails.Add(new Email { EmailAddress = email });
             }
