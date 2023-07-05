@@ -37,14 +37,14 @@ namespace SendEmalWebApi.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EntityDBId = table.Column<int>(type: "int", nullable: false)
+                    LogId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Emails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Emails_Logs_EntityDBId",
-                        column: x => x.EntityDBId,
+                        name: "FK_Emails_Logs_LogId",
+                        column: x => x.LogId,
                         principalTable: "Logs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -57,7 +57,7 @@ namespace SendEmalWebApi.Migrations
 
             migrationBuilder.InsertData(
                 table: "Emails",
-                columns: new[] { "Id", "EmailAddress", "EntityDBId" },
+                columns: new[] { "Id", "EmailAddress", "LogId" },
                 values: new object[,]
                 {
                     { 1, "test1@mail.ru", 1 },
@@ -65,9 +65,9 @@ namespace SendEmalWebApi.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Emails_EntityDBId",
+                name: "IX_Emails_LogId",
                 table: "Emails",
-                column: "EntityDBId");
+                column: "LogId");
         }
 
         /// <inheritdoc />

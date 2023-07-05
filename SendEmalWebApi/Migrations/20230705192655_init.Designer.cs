@@ -12,7 +12,7 @@ using SendEmalWebApi.Data;
 namespace SendEmalWebApi.Migrations
 {
     [DbContext(typeof(SenderContext))]
-    [Migration("20230705190318_init")]
+    [Migration("20230705192655_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -37,12 +37,12 @@ namespace SendEmalWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EntityDBId")
+                    b.Property<int>("LogId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("EntityDBId");
+                    b.HasIndex("LogId");
 
                     b.ToTable("Emails");
 
@@ -51,13 +51,13 @@ namespace SendEmalWebApi.Migrations
                         {
                             Id = 1,
                             EmailAddress = "test1@mail.ru",
-                            EntityDBId = 1
+                            LogId = 1
                         },
                         new
                         {
                             Id = 2,
                             EmailAddress = "test2@gmail.com",
-                            EntityDBId = 1
+                            LogId = 1
                         });
                 });
 
@@ -106,13 +106,13 @@ namespace SendEmalWebApi.Migrations
 
             modelBuilder.Entity("SendEmalWebApi.Model.Email", b =>
                 {
-                    b.HasOne("SendEmalWebApi.Model.Log", "EntityDB")
+                    b.HasOne("SendEmalWebApi.Model.Log", "Log")
                         .WithMany("Recipient")
-                        .HasForeignKey("EntityDBId")
+                        .HasForeignKey("LogId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EntityDB");
+                    b.Navigation("Log");
                 });
 
             modelBuilder.Entity("SendEmalWebApi.Model.Log", b =>
