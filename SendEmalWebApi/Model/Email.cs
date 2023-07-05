@@ -6,8 +6,8 @@ namespace SendEmalWebApi.Model
     public class Email : Entity
     {
         [Required]
-        public string EmailAddress { get; set; }
-        public EntityDB EntityDB { get; set; }
+        public string? EmailAddress { get; set; }
+        public Log? EntityDB { get; set; }
         [ForeignKey(nameof(EntityDBId))]
         public int EntityDBId { get; set; }
     }

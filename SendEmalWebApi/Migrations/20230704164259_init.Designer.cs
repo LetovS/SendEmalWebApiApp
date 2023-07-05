@@ -61,7 +61,7 @@ namespace SendEmalWebApi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SendEmalWebApi.Model.EntityDB", b =>
+            modelBuilder.Entity("SendEmalWebApi.Model.Log", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,7 +90,7 @@ namespace SendEmalWebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RequestModels");
+                    b.ToTable("Logs");
 
                     b.HasData(
                         new
@@ -106,16 +106,16 @@ namespace SendEmalWebApi.Migrations
 
             modelBuilder.Entity("SendEmalWebApi.Model.Email", b =>
                 {
-                    b.HasOne("SendEmalWebApi.Model.EntityDB", "EntityDB")
+                    b.HasOne("SendEmalWebApi.Model.Log", "Log")
                         .WithMany("Recipient")
                         .HasForeignKey("EntityDBId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("EntityDB");
+                    b.Navigation("Log");
                 });
 
-            modelBuilder.Entity("SendEmalWebApi.Model.EntityDB", b =>
+            modelBuilder.Entity("SendEmalWebApi.Model.Log", b =>
                 {
                     b.Navigation("Recipient");
                 });

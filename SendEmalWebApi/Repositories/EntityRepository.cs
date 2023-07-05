@@ -4,7 +4,7 @@ using SendEmalWebApi.Model;
 
 namespace SendEmalWebApi.Repositories
 {
-    public class EntityRepository : IRepository<EntityDB>
+    public class EntityRepository : IRepository<Log>
     {
         private readonly SenderContext _context;
 
@@ -12,16 +12,16 @@ namespace SendEmalWebApi.Repositories
         {
             _context = context;
         }
-        public void Create(EntityDB model)
+        public async Task Create(Log model)
         {
-            _context.RequestModels.Add(model);
-            _context.SaveChanges();
+            _context.Logs.Add(model);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<List<EntityDB>> GetAll()
+        public async Task<List<Log>> GetAll()
         {
-            var result = await _context.RequestModels
-                .Select(x => new EntityDB
+            var result = await _context.Logs
+                .Select(x => new Log
                 {
                     Id = x.Id,
                     Subject = x.Subject,

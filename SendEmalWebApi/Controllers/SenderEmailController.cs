@@ -13,17 +13,17 @@ namespace SendEmalWebApi.Controllers
     [ApiController]
     public class SenderEmailController : ControllerBase
     {
-        private readonly IRepository<EntityDB> _baseRepository;
+        private readonly IRepository<Log> _baseRepository;
         private readonly IEmailSenderService _senderService;
 
-        public SenderEmailController(IRepository<EntityDB> baseRepository, IEmailSenderService senderService)
+        public SenderEmailController(IRepository<Log> baseRepository, IEmailSenderService senderService)
         {
             _baseRepository = baseRepository;
             _senderService = senderService;
         }
         [HttpGet]
         [Route("/api/mails")]
-        public async Task<ActionResult<List<EntityDB>>> GetProducts()
+        public async Task<ActionResult<List<Log>>> GetProducts()
         { 
             return await _baseRepository.GetAll();
         }
@@ -31,14 +31,14 @@ namespace SendEmalWebApi.Controllers
         [Route("/api/mails")]
         public async Task<ActionResult> NewWork(RequestModel model)
         {
-            var entity = new EntityDB();
+            var entity = new Log();
             // Сформеровать email  model.Subject model.Body
 
 
             try
             {
                 // разослать по  model.Recipients
-                _senderService.SendEmail(model.Recipient, model.Body, model.Subject);
+                _senderService.SendEmail(model.Recipient!, model.Body!, model.Subject!);
                 entity.Result = "OK";
             }
             catch (Exception e)
@@ -50,13 +50,13 @@ namespace SendEmalWebApi.Controllers
             // записать в бд 
             entity.Subject = model.Subject;
             entity.Body = model.Body;
-            List<Email> emails = new List<Email>();
-            foreach (var email in model.Recipient)
+            List<Email> emails = new ();
+            foreach (var email in model.Recipient!)
             {
                 emails.Add(new Email { EmailAddress = email });
             }
             entity.Recipient = emails;
-            _baseRepository.Create(entity);
+            await _baseRepository.Create(entity);
             return Ok();
         }
     }

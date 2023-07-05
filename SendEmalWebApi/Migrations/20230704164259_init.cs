@@ -14,7 +14,7 @@ namespace SendEmalWebApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "RequestModels",
+                name: "Logs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -45,13 +45,13 @@ namespace SendEmalWebApi.Migrations
                     table.ForeignKey(
                         name: "FK_Emails_RequestModels_EntityDBId",
                         column: x => x.EntityDBId,
-                        principalTable: "RequestModels",
+                        principalTable: "Logs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "RequestModels",
+                table: "Logs",
                 columns: new[] { "Id", "Body", "CreatedDate", "FieledMessage", "Result", "Subject" },
                 values: new object[] { 1, "Hello my friends", new DateTime(2023, 7, 4, 0, 0, 0, 0, DateTimeKind.Local), "", "OK", "My first email" });
 
@@ -77,7 +77,7 @@ namespace SendEmalWebApi.Migrations
                 name: "Emails");
 
             migrationBuilder.DropTable(
-                name: "RequestModels");
+                name: "Logs");
         }
     }
 }

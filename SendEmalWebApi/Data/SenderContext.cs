@@ -5,7 +5,7 @@ namespace SendEmalWebApi.Data
 {
     public class SenderContext : DbContext
     {
-        public DbSet<EntityDB> RequestModels { get; set; }
+        public DbSet<Log> Logs { get; set; }
         public DbSet<Email> Emails { get; set; }
         public SenderContext(DbContextOptions<SenderContext> opt) : base (opt)
         {
@@ -14,8 +14,8 @@ namespace SendEmalWebApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {           
-            modelBuilder.Entity<EntityDB>()
-                .HasData(new EntityDB
+            modelBuilder.Entity<Log>()
+                .HasData(new Log
                 {
                     Id = 1,
                     Subject = "My first email",
