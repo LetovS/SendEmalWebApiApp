@@ -11,7 +11,7 @@ namespace SendEmalWebApi.Repositories
     {
         private readonly SenderContext _context;
         /// <summary>
-        /// Репозиторий логов.
+        /// Инициализация репозитория логов.
         /// </summary>
         /// <param name="context">Контекст БД.</param>
         public LogRepository(SenderContext context)
