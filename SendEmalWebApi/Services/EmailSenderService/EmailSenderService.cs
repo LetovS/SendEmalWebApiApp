@@ -46,7 +46,7 @@ namespace SendEmalWebApi.Services.EmailSenderService
             smtp.Connect(_host, int.Parse(_port!), SecureSocketOptions.StartTls);
             smtp.Authenticate(_user, _pass);
             smtp.Send(email);
-            smtp.Disconnect(true);
+            smtp.Disconnect(true);1
         }
     }
 }
