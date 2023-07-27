@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MimeKit;
-using SendEmalWebApi.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using SendEmalWebApi.Model;
 using SendEmalWebApi.Repositories;
 using SendEmalWebApi.Services.EmailSenderService;

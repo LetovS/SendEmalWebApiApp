@@ -2,8 +2,6 @@
 using MimeKit;
 using MimeKit.Text;
 using MailKit.Security;
-using SendEmalWebApi.Model;
-using Microsoft.Extensions.Hosting;
 
 namespace SendEmalWebApi.Services.EmailSenderService
 {
@@ -46,7 +44,7 @@ namespace SendEmalWebApi.Services.EmailSenderService
             smtp.Connect(_host, int.Parse(_port!), SecureSocketOptions.StartTls);
             smtp.Authenticate(_user, _pass);
             smtp.Send(email);
-            smtp.Disconnect(true);1
+            smtp.Disconnect(true);
         }
     }
 }

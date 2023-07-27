@@ -1,6 +1,4 @@
-﻿using MimeKit;
-
-namespace SendEmalWebApi.Services.EmailSenderService
+﻿namespace SendEmalWebApi.Services.EmailSenderService
 {
     /// <summary>
     /// Email sender
