@@ -47,7 +47,7 @@ namespace SendEmalWebApi.Controllers
             try
             {
                 // разослать по  request.Recipients
-                _senderService.SendEmail(request.Recipient!, request.Body!, request.Subject!);
+                await _senderService.SendEmailAsync(request.Recipient!, request.Body!, request.Subject!);
                 log.Result = "OK";
             }
             catch (Exception e)

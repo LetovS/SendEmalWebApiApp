@@ -14,6 +14,6 @@
         /// <param name="mails">Адресаты отправки.</param>
         /// <param name="body">Текст электронной письма.</param>
         /// <param name="subject">Тема электронной письма.</param>
-        void SendEmail(ICollection<string> mails, string body, string subject);
+        Task SendEmailAsync(ICollection<string> mails, string body, string subject);
     }
 }

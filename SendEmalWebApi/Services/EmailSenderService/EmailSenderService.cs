@@ -30,7 +30,7 @@ namespace SendEmalWebApi.Services.EmailSenderService
         }
 
         ///<inheritdoc/>
-        public void SendEmail(ICollection<string> mails, string body, string subject)
+        public async Task SendEmailAsync(ICollection<string> mails, string body, string subject)
         {
             var email = new MimeMessage();
             email.From.Add(MailboxAddress.Parse(_user));
@@ -43,7 +43,7 @@ namespace SendEmalWebApi.Services.EmailSenderService
             using var smtp = new SmtpClient();
             smtp.Connect(_host, int.Parse(_port!), SecureSocketOptions.StartTls);
             smtp.Authenticate(_user, _pass);
-            smtp.Send(email);
+            await smtp.SendAsync(email);
             smtp.Disconnect(true);
         }
     }
